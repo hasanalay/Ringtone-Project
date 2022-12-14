@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using App.Models;
 
 namespace App.Controllers
 {
@@ -6,7 +7,12 @@ namespace App.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return View(Repository.Ringtones);
+        }
+
+        public IActionResult Details(int id)
+        {
+            return View(); //Repository.GetById(id)
         }
 
         public IActionResult Contact()

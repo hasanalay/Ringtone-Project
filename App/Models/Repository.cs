@@ -16,10 +16,11 @@ namespace App.Models
                 new Ringtone() { Id=3, Name="High Life", Artist= "Berke Bıçak", Genre="High Life", ImageUrl="2.jpeg"},
                 new Ringtone() { Id=4, Name="Billboard", Artist= "Berke Bıçak", Genre="Billboard", ImageUrl="2.jpeg"},
                 new Ringtone() { Id=5, Name="Storm Boy", Artist= "Berke Bıçak", Genre="Storm Boy", ImageUrl="2.jpeg"},
+                new Ringtone() { Id=5, Name="Bir Kez Daha", Artist= "Berke Bıçak", Genre="Storm Boy", ImageUrl="2.jpeg"},
         };
         }
 
-        public static List<Ringtone> Movies
+        public static List<Ringtone> Ringtones
         {
             get
             {

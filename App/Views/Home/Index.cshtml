@@ -1,9 +1,11 @@
+@model IEnumerable<Ringtone>
 <div class="row">
     <div class="col-md-3">
         @Html.Partial("_menu")
     </div>
     <div class="col-md-9">
-        @Html.Partial("_ringtones")
+        @Html.Partial("_ringtones", Model)
     </div>
 </div>
 Footer
+ 
