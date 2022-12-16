@@ -10,8 +10,7 @@ public partial class DbProjectContext : DbContext
     {
     }
 
-    public DbProjectContext(DbContextOptions<DbProjectContext> options)
-        : base(options)
+    public DbProjectContext(DbContextOptions<DbProjectContext> options) : base(options)
     {
     }
 
@@ -21,8 +20,8 @@ public partial class DbProjectContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    => optionsBuilder.UseSqlServer("Server=ServerName;Database=dbname;Trusted_Connection=True;;TrustServerCertificate=True");
+    /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    => optionsBuilder.UseSqlServer("Server=ServerName;Database=dbname;Trusted_Connection=True;;TrustServerCertificate=True");*/
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

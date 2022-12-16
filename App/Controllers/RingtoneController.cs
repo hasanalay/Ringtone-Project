@@ -6,11 +6,10 @@ namespace App.Controllers
 {
     public class RingtoneController : Controller
     {
-        private DbProjectContext db = new DbProjectContext();
         public IActionResult Index()
         {
             //TODO: Implement Realistic Implementation
-            return View(db.Ringtones.ToList());
+            return View();
 
         }
 

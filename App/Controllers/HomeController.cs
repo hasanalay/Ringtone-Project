@@ -1,18 +1,21 @@
 using Microsoft.AspNetCore.Mvc;
 using App.Models;
 using System.Linq;
-using System;
 namespace App.Controllers
 {
 
     public class HomeController : Controller
     {
-        private DbProjectContext db = new DbProjectContext();
+        private DbProjectContext db { get; }
+        public HomeController(DbProjectContext _context)
+        {
+            this.db = _context;
+        }
 
         public IActionResult Index()
         {
 
-            return View(db.Ringtones.ToList());
+            return View(this.db.Ringtones.ToList());
 
         }
 
