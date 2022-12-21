@@ -1,4 +1,3 @@
-using System.Linq;
 using App.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,5 +29,7 @@ namespace App.Controllers
             //TODO: Implement Realistic Implementation
             return View();
         }
+
+
     }
 }

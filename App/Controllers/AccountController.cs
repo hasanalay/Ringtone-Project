@@ -1,4 +1,5 @@
-﻿using App.Models;
+
+using App.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
@@ -31,6 +32,7 @@ namespace App.Controllers
         {
             return View();
         }
+        
         [HttpPost]
         public IActionResult Register(RegisterViewModel model)
         {
@@ -59,3 +61,4 @@ namespace App.Controllers
         }
     }
 }
+        

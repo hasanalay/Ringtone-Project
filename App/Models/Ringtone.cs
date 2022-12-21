@@ -18,5 +18,7 @@ public partial class Ringtone
 
     public decimal? Price { get; set; }
 
+    public string Details { get; set; }
+
     public virtual ICollection<CardPayment> CardPayments { get; } = new List<CardPayment>();
 }
