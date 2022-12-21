@@ -1,5 +1,6 @@
-using Microsoft.AspNetCore.Mvc;
+
 using App.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
 namespace App.Controllers
@@ -7,59 +8,57 @@ namespace App.Controllers
     public class AccountController : Controller
     {
         private DbProjectContext db { get; }
+
         public AccountController(DbProjectContext _context)
         {
             this.db = _context;
         }
-        public ActionResult Admin()
+
+        public IActionResult Login()
+        {
+            //video 1 saat 48. dk
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Login(LoginViewModel model)
+        {
+            if(ModelState.IsValid)
+            {
+                
+            }
+            return View(model);
+        }
+        public IActionResult Register()
         {
             return View();
         }
-
-        // POST: Login
+        
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Index(LoginModel model)
+        public IActionResult Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                // Check if the provided username and password match a user in the database
-                var user = db.Users.FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
-                if (user != null)
+                if(db.Users.Any(x=> x.Email == model.Email))
                 {
-                    return RedirectToAction("Index", "Home");
+                    ModelState.AddModelError(nameof(model.Email), "This email is already exist!");
+                    return View(model);
                 }
-
+                User user = new User()
+                {
+                    Name = model.Name,
+                    Email = model.Email,
+                    Password = model.Password
+                };
+                db.Users.Add(user);
+                db.SaveChanges();
+                return RedirectToAction(nameof(Login));
             }
-            ModelState.AddModelError("", "Invalid username or password");
-            return View(model);
+            else { return View(model); }
         }
-
-        public ActionResult ViewUsers()
+        public IActionResult Profile()
         {
-            // Retrieve a list of all users from the database
-            return View(db.Users.Select(users => users));
+            return View();
         }
-
-        // Action to add a new user
-        [HttpPost]
-        public ActionResult AddUser(User user)
-        {
-            // Validate the user input
-            if (ModelState.IsValid)
-            {
-                // Save the new user to the database
-                //SaveUserToDatabase(user);
-
-                // Redirect to the user list view
-                return RedirectToAction("ViewUsers");
-            }
-
-            // If the input is invalid, return the user to the add user form
-            return View("AddUser");
-        }
-
-        // Other actions for managing users, ringtones, and categories
     }
 }
-
+        
