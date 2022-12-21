@@ -1,5 +1,5 @@
 
-# Description
+# DESCRIPTION
 
 A brief description of what this project does and who it's for
 These instructions describe the steps required to create and connect to a database. First of all, a database administrator (for example, Microsoft SQL Server Management Studio, MySQL Workbench, etc.) is used to create a database. Using the database administrator, you can follow the following steps:
