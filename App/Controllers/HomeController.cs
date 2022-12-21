@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using App.Models;
 using System.Linq;
+using System.Net;
+
 namespace App.Controllers
 {
 
@@ -21,7 +23,8 @@ namespace App.Controllers
 
         public IActionResult Details(int id)
         {
-            return View(); //Repository.GetById(id)
+
+            return View(db.Ringtones.Where(p => p.Id == id).FirstOrDefault());
         }
 
         public IActionResult Contact()

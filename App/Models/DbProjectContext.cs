@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
 namespace App.Models;
@@ -20,8 +19,6 @@ public partial class DbProjectContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
-    /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    => optionsBuilder.UseSqlServer("Server=ServerName;Database=dbname;Trusted_Connection=True;;TrustServerCertificate=True");*/
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -106,5 +103,7 @@ public partial class DbProjectContext : DbContext
         OnModelCreatingPartial(modelBuilder);
     }
 
+
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
 }

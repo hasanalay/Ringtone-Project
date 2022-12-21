@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace App.Models;
+﻿namespace App.Models;
 
 public partial class CardPayment
 {
