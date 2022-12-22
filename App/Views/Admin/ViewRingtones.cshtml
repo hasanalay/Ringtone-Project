@@ -1,4 +1,4 @@
-@model IEnumerable<User>
+@model IEnumerable<Ringtone>
 
 
 <!DOCTYPE html>
@@ -11,21 +11,21 @@
     <link rel="stylesheet" href="../../modules/bootstrap/dist/css/bootstrap.min.css" />
 </head>
 
-@foreach (var user in Model)
+@foreach (var ringtone in Model)
 {
     <div class="card mb-3">
         <div class="row no-gutter">
             <div class="col-md-9">
                 <div class="card-body">
                     <p class="card-title">
-                        Username : @user.Name
+                        Name : @ringtone.Name
                     </p>
                     <p class="card-text">
-                        email : @user.Email
+                        Details : @ringtone.Details
                     </p>
                     <p class="card-text">
                         <small class="text-muted">
-                            Şifre : @user.Password
+                            url : @ringtone.Audiourl
                         </small>
                     </p>
                 </div>

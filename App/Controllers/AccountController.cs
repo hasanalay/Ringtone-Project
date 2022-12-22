@@ -1,5 +1,6 @@
 
 using App.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
@@ -22,9 +23,9 @@ namespace App.Controllers
         [HttpPost]
         public IActionResult Login(LoginViewModel model)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                
+
             }
             return View(model);
         }
@@ -32,13 +33,13 @@ namespace App.Controllers
         {
             return View();
         }
-        
+
         [HttpPost]
         public IActionResult Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                if(db.Users.Any(x=> x.Email == model.Email))
+                if (db.Users.Any(x => x.Email == model.Email))
                 {
                     ModelState.AddModelError(nameof(model.Email), "This email is already exist!");
                     return View(model);
@@ -61,4 +62,3 @@ namespace App.Controllers
         }
     }
 }
-        

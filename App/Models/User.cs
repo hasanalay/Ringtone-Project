@@ -13,5 +13,7 @@ public partial class User
 
     public string Password { get; set; }
 
+    public string Role { get; set; }
+
     public virtual ICollection<CardPayment> CardPayments { get; } = new List<CardPayment>();
 }
