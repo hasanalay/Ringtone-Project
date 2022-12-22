@@ -1,0 +1,32 @@
+@model User
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../modules/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+
+<h2>Add User</h2>
+<form method="post" class="form-control">
+    <div>
+        <label>User Name : </label>
+        @Html.TextBoxFor(x => x.Name)
+    </div>
+    <div>
+        <label>User E-mail : </label>
+        @Html.TextBoxFor(x => x.Email)
+    </div>
+    <div>
+        <label>User Role : </label>
+        @Html.TextBoxFor(x => x.Role)
+    </div>
+    <div>
+        <label>User Password : </label>
+        @Html.TextBoxFor(x => x.Password)
+    </div>
+    <button class="btn btn-primary">Add</button>
+</form>

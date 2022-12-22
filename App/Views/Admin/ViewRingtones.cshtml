@@ -1,0 +1,45 @@
+@model IEnumerable<Ringtone>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../modules/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Details</th>
+            <th scope="col">AudioUrl</th>
+            <th scope="col">Artist</th>
+            <th scope="col">Category</th>
+            <th scope="col">ImageUrl</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model)
+        {
+            <tr>
+                <td>@r.Id</td>
+                <td>@r.Name</td>
+                <td>@r.Details</td>
+                <td>@r.Audiourl</td>
+                <td>@r.Artist</td>
+                <td>@r.Category</td>
+                <td>@r.Imageurl</td>
+
+                <td><a href="/Admin/DeleteRingtone/@r.Id" class="btn btn-danger">Delete</a></td>
+                <td><a href="/Admin/UpdateRingtone/@r.Id" class="btn btn-success">Update</a></td>
+
+            </tr>
+        }
+    </tbody>
+    <a href="/Admin/AddRingtone" class="btn btn-primary">Add</a>
+</table>
