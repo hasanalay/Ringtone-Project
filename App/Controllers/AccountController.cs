@@ -55,10 +55,11 @@ namespace App.Controllers
             }
             else { return View(model); }
         }
+        /*
         public IActionResult Profile()
         {
             return View();
-        }
+        }*/
     }
 }
         

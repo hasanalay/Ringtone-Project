@@ -13,35 +13,36 @@
 
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-md-9">
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <div class="row no-gutter">
-                            <div class="col-md-4">
-                                <img src="~/img/@Model.Imageurl" alt="@Model.Artist" class="card-img">
-                            </div>
-                            <div class="col-md-8">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row no-gutter">
+                        <div class="col-md-4">
+                            <img src="~/img/@Model.Imageurl" alt="@Model.Artist" class="card-img">
+                        </div>
+                        <div class="col-md-8">
 
-                                <h5 class="card-title">
-                                    <a asp-action="Details" asp-controller="Home" asp-route-id="@Model.Id">
-                                        @Model.Name</a>
-                                </h5>
-                                <p class="card-text">
-                                    @Model.Details
-                                </p>
-                                <audio controls>
-                                    <source src="~/audio/@Model.Audiourl" type="audio/mpeg">
-                                </audio>
-                                <p class="card-text">
-                                    <small class="text-muted">3 days ago</small>
-                                </p>
-                            </div>
+                            <h5 class="card-title">
+                                <a asp-action="Details" asp-controller="Home" asp-route-id="@Model.Id">
+                                    @Model.Name</a>
+                            </h5>
+                            <p class="card-text">
+                                @Model.Details
+                            </p>
+                            <audio controls>
+                                <source src="~/audio/@Model.Audiourl" type="audio/mpeg">
+                            </audio>
+                            <p class="card-text">
+                                <small class="text-muted">3 days ago</small>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
 </body>
 
 </html>
