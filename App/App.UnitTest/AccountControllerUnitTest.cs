@@ -1,5 +1,4 @@
 using App.Controllers;
-using App.Models;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 
