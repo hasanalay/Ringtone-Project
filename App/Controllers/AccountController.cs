@@ -2,6 +2,7 @@
 using App.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using App.UnitTest;
 
 namespace App.Controllers
 {
@@ -12,6 +13,16 @@ namespace App.Controllers
         public AccountController(DbProjectContext _context)
         {
             this.db = _context;
+        }
+
+        public AccountController(IAccountService mockObject)
+        {
+            throw new NotImplementedException();
+        }
+
+        public AccountController(object mockObject)
+        {
+            throw new NotImplementedException();
         }
 
         public IActionResult Login()
