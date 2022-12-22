@@ -14,6 +14,11 @@ namespace App.Controllers
             this.db = _context;
         }
 
+        public HomeController()
+        {
+            throw new NotImplementedException();
+        }
+
         public IActionResult Index()
         {
 
