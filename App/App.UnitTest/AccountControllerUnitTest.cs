@@ -22,7 +22,20 @@ public class AccountControllerTest
         Assert.That(result, Is.TypeOf<ViewResult>());
     }
     
-    
+    [Test]
+    public void TestRegisterAction()
+    {
+        // Arrange
+        var mock = new Mock<IAccountService>();
+        var controller = new AccountController(mock.Object);
+
+        // Act
+        var result = controller.Register();
+
+        // Assert
+        Assert.That(result, Is.TypeOf<ViewResult>());
+    }
+
 }
 
 public interface IAccountService
