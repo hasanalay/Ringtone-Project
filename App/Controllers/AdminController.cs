@@ -36,15 +36,52 @@ namespace App.Controllers
             else { return View(model); }
 
         }
-        public ActionResult Index()
+        public IActionResult Index()
         {
             return View();
         }
 
-        public ActionResult ViewUsers()
+        public IActionResult ViewUsers()
         {
             // Retrieve a list of all users from the database
             return View(db.Users.Select(users => users));
         }
+        public IActionResult DeleteUser(int id)
+        {
+            var result = db.Users.Find(id);
+            db.Users.Remove(result);
+            db.SaveChanges();
+            return RedirectToAction(nameof(ViewUsers));
+        }
+        [HttpGet]
+        public IActionResult AddUser()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddUser(User x)
+        {
+            var result = db.Users.Add(x);
+            db.SaveChanges();
+            return RedirectToAction(nameof(ViewUsers));
+        }
+
+        [HttpGet]
+        public IActionResult UpdateUser(int id)
+        {
+            var result = db.Users.Find(id);
+            return View(result);
+        }
+        [HttpPost]
+        public IActionResult UpdateUser(User x)
+        {
+            var result = db.Users.Find(x.Id);
+            result.Name = x.Name;
+            result.Role = x.Role;
+            db.SaveChanges();
+            return RedirectToAction(nameof(ViewUsers));
+        }
+
     }
 }
