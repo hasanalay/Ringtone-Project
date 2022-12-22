@@ -5,17 +5,21 @@ namespace App.Controllers
 {
     public class RingtoneController : Controller
     {
+        public RingtoneController(object mockServiceObject)
+        {
+            throw new NotImplementedException();
+        }
+
+        public RingtoneController()
+        {
+            throw new NotImplementedException();
+        }
+
         public IActionResult Index()
         {
             //TODO: Implement Realistic Implementation
             return View();
 
-        }
-
-        public IActionResult Create()
-        {
-            //TODO: Implement Realistic Implementation
-            return View();
         }
 
         public IActionResult Details()
@@ -31,5 +35,10 @@ namespace App.Controllers
         }
 
 
+        public IActionResult Create()
+        {
+            throw new NotImplementedException();
+            //return View();
+        }
     }
 }
