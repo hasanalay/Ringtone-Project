@@ -1,11 +1,10 @@
-
 using App.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
 namespace App.Controllers
 {
+
     public class AccountController : Controller
     {
         private DbProjectContext db { get; }

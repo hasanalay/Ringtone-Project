@@ -1,4 +1,4 @@
-@model User
+@model Ringtone
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,20 +13,20 @@
 <h2>Add User</h2>
 <form method="post" class="form-control">
     <div>
-        <label>User Name : </label>
+        <label>Ringtone Name : </label>
         @Html.TextBoxFor(x => x.Name)
     </div>
     <div>
-        <label>User E-mail : </label>
-        @Html.TextBoxFor(x => x.Email)
+        <label>Ringtone Detail : </label>
+        @Html.TextBoxFor(x => x.Details)
     </div>
     <div>
-        <label>User Role : </label>
-        @Html.TextBoxFor(x => x.Role)
+        <label>Ringtone Price : </label>
+        @Html.TextBoxFor(x => x.Price)
     </div>
     <div>
-        <label>User Password : </label>
-        @Html.TextBoxFor(x => x.Password)
+        <label>Ringtone Artist : </label>
+        @Html.TextBoxFor(x => x.Artist)
     </div>
     <button class="btn btn-primary">Add</button>
 </form>

@@ -26,20 +26,24 @@ namespace App.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (db.Users.Any(x => x.Role == model.Role))
+                User user = db.Users.FirstOrDefault(u => u.Name == model.Name && u.Password == model.Password);
+                if (user != null)
                 {
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction("Index", "Admin");
                 }
-                return View(model);
-
+                else
+                {
+                    ModelState.AddModelError("", "Username or Password is incorrect");
+                }
             }
-            else { return View(model); }
-
+            return View(model);
         }
         public IActionResult Index()
         {
             return View();
         }
+
+        //USER OPERATIONS
 
         public IActionResult ViewUsers()
         {
@@ -81,6 +85,51 @@ namespace App.Controllers
             result.Role = x.Role;
             db.SaveChanges();
             return RedirectToAction(nameof(ViewUsers));
+        }
+
+
+
+        //RINGTONE OPERATIONS
+        public IActionResult ViewRingtones()
+        {
+            // Retrieve a list of all users from the database
+            return View(db.Ringtones.Select(x => x));
+        }
+        public IActionResult DeleteRingtone(int id)
+        {
+            var result = db.Ringtones.Find(id);
+            db.Ringtones.Remove(result);
+            db.SaveChanges();
+            return RedirectToAction(nameof(ViewRingtones));
+        }
+        [HttpGet]
+        public IActionResult AddRingtone()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddRingtone(Ringtone x)
+        {
+            var result = db.Ringtones.Add(x);
+            db.SaveChanges();
+            return RedirectToAction(nameof(ViewRingtones));
+        }
+
+        [HttpGet]
+        public IActionResult UpdateRingtone(int id)
+        {
+            var result = db.Ringtones.Find(id);
+            return View(result);
+        }
+        [HttpPost]
+        public IActionResult UpdateRingtone(Ringtone x)
+        {
+            var result = db.Ringtones.Find(x.Id);
+            result.Name = x.Name;
+            result.Price = x.Price;
+            db.SaveChanges();
+            return RedirectToAction(nameof(ViewRingtones));
         }
 
     }
