@@ -71,6 +71,11 @@ namespace App.Controllers
         {
             return View();
         }*/
+        public IActionResult Logout()
+        {
+            throw new NotImplementedException();
+            //return View()
+        }
     }
 }
         
