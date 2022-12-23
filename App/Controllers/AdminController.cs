@@ -83,6 +83,7 @@ namespace App.Controllers
             var result = db.Users.Find(x.Id);
             result.Name = x.Name;
             result.Role = x.Role;
+            result.Email = x.Email;
             db.SaveChanges();
             return RedirectToAction(nameof(ViewUsers));
         }
@@ -128,6 +129,9 @@ namespace App.Controllers
             var result = db.Ringtones.Find(x.Id);
             result.Name = x.Name;
             result.Price = x.Price;
+            result.Details = x.Details;
+            result.Imageurl = x.Imageurl;
+            result.Audiourl = x.Audiourl;
             db.SaveChanges();
             return RedirectToAction(nameof(ViewRingtones));
         }
