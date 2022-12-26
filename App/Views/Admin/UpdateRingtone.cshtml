@@ -14,11 +14,27 @@
 <form method="post" class="form-control">
     <div>
         <label>Ringtone Name</label>
-        @Html.TextBoxFor(x => x.Name)
+        @Html.TextBoxFor(x => x.Name,new { style = "width:300px"})
     </div>
     <div>
         <label>Ringtone Price</label>
-        @Html.TextBoxFor(x => x.Price)
+        @Html.TextBoxFor(x => x.Price,new { style = "width:300px"})
+    </div>
+    <div>
+        <label>Ringtone Artist </label>
+        @Html.TextBoxFor(x => x.Artist,new { style = "width:300px"})
+    </div>
+    <div>
+        <label>Ringtone Url</label>
+        @Html.TextBoxFor(x => x.Audiourl,new { style = "width:300px"})
+    </div>
+    <div>
+        <label>Ringtone Image Url</label>
+        @Html.TextBoxFor(x => x.Imageurl,new { style = "width:300px"})
+    </div>
+    <div>
+        <label>Ringtone Details</label>
+        @Html.TextBoxFor(x => x.Details,new { style = "width:300px"})
     </div>
     <button class="btn btn-primary">Update</button>
 </form>
