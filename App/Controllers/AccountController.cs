@@ -1,6 +1,12 @@
 using App.Models;
+using Azure.Identity;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 
 namespace App.Controllers
 {
@@ -24,10 +30,30 @@ namespace App.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (db.Users.Any(x => x.Name.ToLower() == model.Name.ToLower() && x.Password == model.Password))
+                {
+                    List<Claim> claims = new List<Claim>();
+                    claims.Add(new Claim("Name", model.Name.ToString()));
 
+                    ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+                    HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Name or password is incorrect.");
+                    return View(model);
+                }
             }
             return View(model);
         }
+        public IActionResult MyAccount(MyAccountModel model)
+        {
+            return View(model);
+        }
+        
         public IActionResult Register()
         {
             return View();
@@ -58,6 +84,11 @@ namespace App.Controllers
         public IActionResult Profile()
         {
             return View();
+        }
+
+        public IActionResult Logout()
+        {
+            return RedirectToAction(nameof(Login));
         }
     }
 }
