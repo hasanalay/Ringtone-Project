@@ -30,10 +30,11 @@ namespace App.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (db.Users.Any(x => x.Name.ToLower() == model.Name.ToLower() && x.Password == model.Password))
+                User user = db.Users.SingleOrDefault(x => x.Name.ToLower() == model.Name.ToLower() && x.Password == model.Password);
+                if (user != null)
                 {
                     List<Claim> claims = new List<Claim>();
-                    claims.Add(new Claim("Name", model.Name.ToString()));
+                    claims.Add(new Claim(" ", model.Name.ToString()));
 
                     ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     ClaimsPrincipal principal = new ClaimsPrincipal(identity);
@@ -49,11 +50,18 @@ namespace App.Controllers
             }
             return View(model);
         }
+
+        public IActionResult Logout()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction(nameof(Login));
+        }
+
         public IActionResult MyAccount(MyAccountModel model)
         {
             return View(model);
         }
-        
+
         public IActionResult Register()
         {
             return View();
@@ -86,9 +94,5 @@ namespace App.Controllers
             return View();
         }
 
-        public IActionResult Logout()
-        {
-            return RedirectToAction(nameof(Login));
-        }
     }
 }
