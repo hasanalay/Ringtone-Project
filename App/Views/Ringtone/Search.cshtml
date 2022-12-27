@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Ringtone>
+
+<link rel="stylesheet" href="../../modules/bootstrap/dist/css/bootstrap.min.css"
+
+<div class="navbar navbar-expand-sm bg-primary navbar-dark">
+    <div class="container">
+
+@foreach (var ringtone in Model)
+{
+    <div class="card mb-3">
+        <div class="row no-gutter">
+            <div class="col-md-4">
+                <img src="~/img/@ringtone.Imageurl" alt="@ringtone.Artist" class="card-img" height="200" width="200">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a asp-action="Details" asp-controller="Home" asp-route-id="@ringtone.Id"> @ringtone.Name</a>
+                    </h5>
+                    <p class="card-text">
+                        by @ringtone.Artist
+                    </p>
+                    <figure class="wp-block-audio alignright">
+                        <audio controls src="~/audio/@ringtone.Audiourl"
+                           type="audio/mpeg" controlsList="nodownload"></audio>
+                    </figure>
+                    <p class="card-text">
+                        <small class="text-muted">3 days ago</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+    </div>
+</div>
