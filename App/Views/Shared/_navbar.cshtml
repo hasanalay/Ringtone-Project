@@ -5,12 +5,16 @@
 
             <a href="/Account/MyAccount" class="navbar-brand">@User.FindFirst(" ").Value.ToUpper()</a>
             <ul class="navbar-nav">
+               @using(Html.BeginForm("Search","Ringtone",FormMethod.Post)){
                 <li>
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <input name="searchedWord" class="form-control" type="search" placeholder="Search" aria-label="Search">
                 </li>
                 <li>
-                    <button type="submit" class="btn btn-success">Search</button>
+                        <button type="submit" class="btn btn-success">Search</button>
+                        <a href="/Home/Index" class="color-me" style="color: #00FFD8">Remove Filter</a>
                 </li>
+                    
+                }
                 <li class="nav-item">
                     <a href="/Customer/Favourite" class="nav-link">Favourite</a>
                 </li>

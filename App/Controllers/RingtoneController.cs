@@ -1,10 +1,16 @@
 using App.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace App.Controllers
 {
     public class RingtoneController : Controller
     {
+        private DbProjectContext db { get; }
+        public RingtoneController(DbProjectContext _context)
+        {
+            this.db = _context;
+        }
         public IActionResult Index()
         {
             //TODO: Implement Realistic Implementation
@@ -29,7 +35,18 @@ namespace App.Controllers
             //TODO: Implement Realistic Implementation
             return View();
         }
-
+        [HttpPost]
+        public IActionResult Search(string searchedWord)
+        {
+            var searched = from x in db.Ringtones select x;
+            if(!string.IsNullOrEmpty(searchedWord)) {
+               
+                searched = searched.Where(x => x.Name.Contains(searchedWord) || x.Details.Contains(searchedWord) || x.Category.Contains(searchedWord));
+                return View(searched); 
+            }
+            return View(searched.ToList());
+            
+        }
 
     }
 }
