@@ -1,9 +1,15 @@
 @model IEnumerable<Ringtone>
-<div class="row">
-    <div class="col-md-3">
+
+<link rel="stylesheet" href="../../modules/bootstrap/dist/css/bootstrap.min.css"
+
+@*<div class="row">
+    <div class="col">
         @Html.Partial("_menu")
     </div>
-    <div class="col-md-9">
+</div>*@
+<div class="row">
+    <div class="col-md">
         @Html.Partial("_ringtones", Model)
     </div>
+</div>
 </div>

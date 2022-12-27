@@ -38,10 +38,14 @@ namespace App.Controllers
         [HttpPost]
         public IActionResult Search(string searchedWord)
         {
-            //ViewData["Details"] = searchedWord;
             var searched = from x in db.Ringtones select x;
-            searched = searched.Where(x => x.Name.Contains(searchedWord) || x.Details.Contains(searchedWord));
-            return View(searched);
+            if(!string.IsNullOrEmpty(searchedWord)) {
+               
+                searched = searched.Where(x => x.Name.Contains(searchedWord) || x.Details.Contains(searchedWord) || x.Category.Contains(searchedWord));
+                return View(searched); 
+            }
+            return View(searched.ToList());
+            
         }
 
     }
