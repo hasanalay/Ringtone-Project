@@ -1,4 +1,6 @@
+using System;
 using App.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +25,16 @@ namespace MovieApp
             string conStr = this.Configuration.GetConnectionString("db");
             services.AddDbContext<DbProjectContext>(options => options.UseSqlServer(conStr));
 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(opts =>
+                {
+                    opts.Cookie.Name = ".App.auth";
+                    opts.ExpireTimeSpan = TimeSpan.FromDays(7);
+                    opts.SlidingExpiration = false;
+                    opts.LoginPath = "/Account/Login";
+                    opts.LogoutPath = "/Account/Logout";
+                    //opts.AccessDeniedPath= "/Home/Index";
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,6 +42,10 @@ namespace MovieApp
         public void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
         {
             app.UseStaticFiles();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(

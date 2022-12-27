@@ -26,14 +26,16 @@ namespace App.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Login(LoginViewModel model)
+        public IActionResult Login(User model)
         {
             if (ModelState.IsValid)
             {
-                if (db.Users.Any(x => x.Name.ToLower() == model.Name.ToLower() && x.Password == model.Password))
+                User user = db.Users.SingleOrDefault(x => x.Name.ToLower() == model.Name.ToLower() && x.Password == model.Password);
+                if (user != null)
                 {
                     List<Claim> claims = new List<Claim>();
-                    claims.Add(new Claim("Name", model.Name.ToString()));
+                    claims.Add(new Claim(" ", model.Name.ToString()));
+                    claims.Add(new Claim("id", model.Id.ToString()));
 
                     ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     ClaimsPrincipal principal = new ClaimsPrincipal(identity);
@@ -49,11 +51,18 @@ namespace App.Controllers
             }
             return View(model);
         }
-        public IActionResult MyAccount(MyAccountModel model)
+
+        public IActionResult Logout()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction(nameof(Login));
+        }
+
+        public IActionResult MyAccount(User model)
         {
             return View(model);
         }
-        
+
         public IActionResult Register()
         {
             return View();
@@ -81,14 +90,22 @@ namespace App.Controllers
             }
             else { return View(model); }
         }
-        public IActionResult Profile()
+        [HttpPost]
+        public IActionResult UpdateProfile(User a)
         {
-            return View();
+            var result = db.Users.Find(a.Id);
+            result.Name = a.Name;
+            result.Password = a.Password;
+            db.SaveChanges();
+            return RedirectToAction(nameof(Logout));
         }
 
-        public IActionResult Logout()
+        [HttpGet]
+        public IActionResult UpdateProfile(int id)
         {
-            return RedirectToAction(nameof(Login));
+            var result = db.Users.Find(id);
+            return View(result);
         }
+
     }
 }
