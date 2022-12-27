@@ -37,6 +37,7 @@ namespace App.Controllers
                     claims.Add(new Claim(" ", model.Name.ToString()));
                     claims.Add(new Claim("id", model.Id.ToString()));
 
+
                     ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     ClaimsPrincipal principal = new ClaimsPrincipal(identity);
                     HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
@@ -58,7 +59,9 @@ namespace App.Controllers
             return RedirectToAction(nameof(Login));
         }
 
+
         public IActionResult MyAccount(User model)
+
         {
             return View(model);
         }

@@ -2,6 +2,7 @@
     <div class="container">
         @if (User.Identity.IsAuthenticated)
         {
+
             <a href="/Account/MyAccount" class="navbar-brand">@User.FindFirst(" ").Value.ToUpper()</a>
             <ul class="navbar-nav">
                 <li>
@@ -13,6 +14,9 @@
                 <li class="nav-item">
                     <a href="/Customer/Favourite" class="nav-link">Favourite</a>
                 </li>
+                <li>
+
+                </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">Cart</a>
                 </li>
@@ -20,6 +24,7 @@
                     <a href="/Account/Logout" class="nav-link">Logout</a>
                 </li>
             </ul>
+
         }
         else
         {
