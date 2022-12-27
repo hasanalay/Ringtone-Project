@@ -26,7 +26,7 @@ namespace App.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Login(LoginViewModel model)
+        public IActionResult Login(User model)
         {
             if (ModelState.IsValid)
             {
@@ -35,6 +35,8 @@ namespace App.Controllers
                 {
                     List<Claim> claims = new List<Claim>();
                     claims.Add(new Claim(" ", model.Name.ToString()));
+                    claims.Add(new Claim("id", model.Id.ToString()));
+
 
                     ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     ClaimsPrincipal principal = new ClaimsPrincipal(identity);
@@ -57,7 +59,9 @@ namespace App.Controllers
             return RedirectToAction(nameof(Login));
         }
 
-        public IActionResult MyAccount(MyAccountModel model)
+
+        public IActionResult MyAccount(User model)
+
         {
             return View(model);
         }
@@ -89,9 +93,21 @@ namespace App.Controllers
             }
             else { return View(model); }
         }
-        public IActionResult Profile()
+        [HttpPost]
+        public IActionResult UpdateProfile(User a)
         {
-            return View();
+            var result = db.Users.Find(a.Id);
+            result.Name = a.Name;
+            result.Password = a.Password;
+            db.SaveChanges();
+            return RedirectToAction(nameof(Logout));
+        }
+
+        [HttpGet]
+        public IActionResult UpdateProfile(int id)
+        {
+            var result = db.Users.Find(id);
+            return View(result);
         }
 
     }

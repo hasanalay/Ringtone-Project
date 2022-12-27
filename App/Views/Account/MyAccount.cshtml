@@ -1,36 +1,13 @@
-﻿@model MyAccountModel
+﻿@model User
 
 @{
     ViewData["Title"] = "Giriş";
+    var x = @Model.Id +1;
 }
 
-<link rel="stylesheet" href="../../modules/bootstrap/dist/css/bootstrap.min.css"
-@*<nav class="navbar navbar-dark bg-primary">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            
-        <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="../Account/MyAccount">Ringtone</a>
-                </li>
-            <li class="nav-item active">
-                    <a class="nav-link" href="../Customer/Favourite">Fav </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-        </ul>
-            <form class="form-inline my-2 my-lg-0 ms-auto">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
-</nav>
-</nav>*@
+<link rel="stylesheet" href="../../modules/bootstrap/dist/css/bootstrap.min.css" <div class="row">
+<div class="col-md-3">
+    <a href="/Account/UpdateProfile/@x" class="btn btn-secondary">Edit Profile</a>
+</div>
 
-
+</div>
