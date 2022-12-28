@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
 namespace App.Models;
@@ -9,11 +10,14 @@ public partial class DbProjectContext : DbContext
     {
     }
 
-    public DbProjectContext(DbContextOptions<DbProjectContext> options) : base(options)
+    public DbProjectContext(DbContextOptions<DbProjectContext> options)
+        : base(options)
     {
     }
 
     public virtual DbSet<CardPayment> CardPayments { get; set; }
+
+    public virtual DbSet<Category> Categories { get; set; }
 
     public virtual DbSet<Ringtone> Ringtones { get; set; }
 
@@ -41,11 +45,25 @@ public partial class DbProjectContext : DbContext
 
             entity.HasOne(d => d.Ringtone).WithMany(p => p.CardPayments)
                 .HasForeignKey(d => d.RingtoneId)
-                .HasConstraintName("FK__card_paym__ringt__3B75D760");
+                .HasConstraintName("FK_card_payments_ringtones");
 
             entity.HasOne(d => d.User).WithMany(p => p.CardPayments)
                 .HasForeignKey(d => d.UserId)
                 .HasConstraintName("FK__card_paym__user___3A81B327");
+        });
+
+        modelBuilder.Entity<Category>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_category_1");
+
+            entity.ToTable("category");
+
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+            entity.Property(e => e.CategoryName)
+                .HasMaxLength(50)
+                .HasColumnName("categoryName");
         });
 
         modelBuilder.Entity<Ringtone>(entity =>
@@ -54,7 +72,9 @@ public partial class DbProjectContext : DbContext
 
             entity.ToTable("ringtones");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
             entity.Property(e => e.Artist)
                 .HasMaxLength(255)
                 .IsUnicode(false)
@@ -63,9 +83,11 @@ public partial class DbProjectContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("audiourl");
-            entity.Property(e => e.Category)
+            entity.Property(e => e.CategoryId).HasColumnName("categoryId");
+            entity.Property(e => e.Details)
+                .HasMaxLength(255)
                 .IsUnicode(false)
-                .HasColumnName("category");
+                .HasColumnName("details");
             entity.Property(e => e.Imageurl)
                 .HasMaxLength(255)
                 .IsUnicode(false)
@@ -77,6 +99,10 @@ public partial class DbProjectContext : DbContext
             entity.Property(e => e.Price)
                 .HasColumnType("decimal(18, 0)")
                 .HasColumnName("price");
+
+            entity.HasOne(d => d.Category).WithMany(p => p.Ringtones)
+                .HasForeignKey(d => d.CategoryId)
+                .HasConstraintName("FK_ringtones_category");
         });
 
         modelBuilder.Entity<User>(entity =>
@@ -98,12 +124,14 @@ public partial class DbProjectContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("password");
+            entity.Property(e => e.Role)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("role");
         });
 
         OnModelCreatingPartial(modelBuilder);
     }
 
-
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-
 }

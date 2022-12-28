@@ -24,11 +24,13 @@ namespace App.Controllers
             }
             var ringtones = from r in db.Ringtones select r;
 
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 ringtones = ringtones.Where(s => s.Name!.Contains(searchString) || s.Details.Contains(searchString));
 
             }
+
 
             return View(ringtones);
         }
@@ -41,6 +43,12 @@ namespace App.Controllers
         public IActionResult Contact()
         {
             return View();
+        }
+
+        public IActionResult Category(int id)
+        {
+            var result = db.Ringtones.Where(x => x.CategoryId == id).ToList();
+            return View(result);
         }
 
     }
