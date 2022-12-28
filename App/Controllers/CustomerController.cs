@@ -17,6 +17,11 @@ namespace App.Controllers
             // Retrieve a list of all users from the database
             return View(db.Ringtones.Select(x=>x));
         }
+        public IActionResult Cart()
+        {
+            // Retrieve a list of all users from the database
+            return View(db.Ringtones.Select(x=>x));
+        }
         public IActionResult MyAccount()
         {
             return View();
