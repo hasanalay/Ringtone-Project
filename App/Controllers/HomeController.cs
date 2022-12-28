@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using App.Models;
 using System.Linq;
 using System.Net;
+using System;
 
 namespace App.Controllers
 {
@@ -14,13 +15,23 @@ namespace App.Controllers
             this.db = _context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
 
-            return View(this.db.Ringtones.ToList());
+            if (db.Ringtones == null)
+            {
+                return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
+            }
+            var ringtones = from r in db.Ringtones select r;
 
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                ringtones = ringtones.Where(s => s.Name!.Contains(searchString) || s.Details.Contains(searchString));
+
+            }
+
+            return View(ringtones);
         }
-
         public IActionResult Details(int id)
         {
 
@@ -31,5 +42,6 @@ namespace App.Controllers
         {
             return View();
         }
+
     }
 }

@@ -1,16 +1,17 @@
 <div class="navbar navbar-expand-sm bg-primary navbar-dark">
     <div class="container">
+
         @if (User.Identity.IsAuthenticated)
         {
 
             <a href="/Account/MyAccount" class="navbar-brand">@User.FindFirst(" ").Value.ToUpper()</a>
             <ul class="navbar-nav">
-                <li>
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                </li>
-                <li>
-                    <button type="submit" class="btn btn-success">Search</button>
-                </li>
+                <form asp-controller="Home" asp-action="Index">
+                    <p>
+                        <input placeholder="Search" type="text" name="SearchString" />
+                        <input type="submit" value="Find" />
+                    </p>
+                </form>
                 <li class="nav-item">
                     <a href="/Customer/Favourite" class="nav-link">Favourite</a>
                 </li>
@@ -31,9 +32,16 @@
             <a href="/" class="navbar-brand">Ringtone App</a>
 
             <ul class="navbar-nav">
+                <form asp-controller="Home" asp-action="Index">
+                    <p>
+                        <input placeholder="Search" type="text" name="SearchString" />
+                        <input type="submit" value="Find" />
+                    </p>
+                </form>
                 <li class="nav-item">
                     <a href="/Account/Login" class="nav-link">Login</a>
                 </li>
+
                 <li class="nav-item">
                     <a href="/Account/Register" class="nav-link">Register</a>
                 </li>
