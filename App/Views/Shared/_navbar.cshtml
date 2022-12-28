@@ -3,7 +3,7 @@
 
         @if (User.Identity.IsAuthenticated)
         {
-
+            <a href="/" class="navbar-brand">Ringtone App</a>
             <a href="/Account/MyAccount" class="navbar-brand">@User.FindFirst(" ").Value.ToUpper()</a>
             <ul class="navbar-nav">
                 <form asp-controller="Home" asp-action="Index">
