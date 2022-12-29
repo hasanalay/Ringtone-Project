@@ -4,7 +4,7 @@
         @if (User.Identity.IsAuthenticated)
         {
             <a href="/" class="navbar-brand">Ringtone App</a>
-            <a href="/Account/MyAccount" class="navbar-brand">@User.FindFirst(" ").Value.ToUpper()</a>
+
             <ul class="navbar-nav">
                 <form asp-controller="Home" asp-action="Index">
                     <p>
@@ -12,9 +12,6 @@
                         <input type="submit" value="Find" />
                     </p>
                 </form>
-                <li class="nav-item">
-                    <a href="/Customer/Favourite" class="nav-link">Favourite</a>
-                </li>
                 <li>
 
                 </li>
@@ -26,6 +23,7 @@
                 <li class="nav-item">
                     <a href="/Account/Logout" class="nav-link">Logout</a>
                 </li>
+                <a href="/Account/MyAccount" class="navbar-brand">@User.FindFirst(" ").Value.ToUpper()</a>
             </ul>
 
         }

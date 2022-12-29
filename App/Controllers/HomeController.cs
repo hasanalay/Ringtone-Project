@@ -90,7 +90,8 @@ namespace App.Controllers
         }
         public IActionResult Success()
         {
-            return View();
+            var ringtones = from r in db.Ringtones where r.Id == 1 select r;
+            return View(ringtones);
         }
     }
 }

@@ -14,19 +14,42 @@
 </head>
 @using (@Html.BeginForm())
 {
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-4">
-                <img style="min-height:200px; width:200px;" src="~/img/@Model.Imageurl" />
-            </div>
-            <div class="col-lg-8 col-md-8 col-sm-8">
 
-                <h2>Product Name: @Model.Name</h2>
-                <h3>Price: @Model.Price TL</h3>
-                <h6>Description: @Model.Details</h6>
-                <input type="submit" value="Submit" class="btn btn-default" />
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="row no-gutter">
+                                <div class="col-md-4">
+                                    <img src="~/img/@Model.Imageurl" alt="@Model.Artist" class="card-img">
+                                </div>
+                                <div class="col-md-8">
+
+                                    <h5 class="card-title">
+                                        <a asp-action="Details" asp-controller="Home" asp-route-id="@Model.Id">
+                                            @Model.Name</a>
+                                    </h5>
+                                    <p class="card-text">
+                                        @Model.Details
+                                    </p>
+                                    <audio controls>
+                                        <source src="~/audio/@Model.Audiourl" type="audio/mpeg">
+                                    </audio>
+                                    <p class="card-text">
+                                        Price: @Model.Price TL
+                                    </p>
+                                    <p class="card-text">
+                                        <input type="submit" value="Add To Cart" class="btn btn-primary" />
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+    </body>
 
 }

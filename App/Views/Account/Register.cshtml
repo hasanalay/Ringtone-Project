@@ -21,7 +21,7 @@
             </div>
             <div class="form-group mb-3">
                 <label asp-for="Email" class="form-label">Email</label>
-                <input asp-for="Email" class="form-control" placeholder="Email@email" />
+                <input asp-for="Email" type="email" class="form-control" placeholder="Email@email" />
                 <span asp-validation-for="Email" class="text-danger small"></span>
             </div>
             <div class="form-group mb-3">
@@ -33,7 +33,7 @@
                 <label asp-for="Repassword" class="form-label">Repassword</label>
                 <input asp-for="Repassword" type="password" class="form-control" placeholder="P@ss!W0rd" />
                 <span asp-validation-for="Repassword" class="text-danger small"></span>
-             </div>
+            </div>
             <br />
             <div>
                 <div class="form-group d-grid mb-3">
@@ -42,4 +42,3 @@
         </form>
     </div>
 </div>
-

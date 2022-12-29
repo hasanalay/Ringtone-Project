@@ -19,7 +19,8 @@
                         <figure class="wp-block-audio alignright"><audio controls src="~/audio/@ringtone.Audiourl"
                         type="audio/mpeg" controlsList="nodownload"></audio></figure>
                         <p class="card-text">
-                            <span class="btn btn-danger">@Html.ActionLink("Add To Cart", "AddtoCart", new { id = @ringtone.Id })</span>
+                            <button class="btn btn-primary">@Html.ActionLink("Add To Cart", "AddtoCart", new { id = @ringtone.Id
+                        },new {@style="color:#ffffff;" })</button>
                         </p>
                     </div>
                 </div>
