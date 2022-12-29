@@ -9,7 +9,7 @@
                 <form asp-controller="Home" asp-action="Index">
                     <p>
                         <input placeholder="Search" type="text" name="SearchString" />
-                        <input type="submit" value="Find" />
+                        <input type="submit" value="Find"  />
                     </p>
                 </form>
                 <li class="nav-item">
@@ -19,7 +19,9 @@
 
                 </li>
                 <li class="nav-item">
+
                     <span class="btn btn-info">@Html.ActionLink("Check Out", "checkout", "Home")</span>
+
                 </li>
                 <li class="nav-item">
                     <a href="/Account/Logout" class="nav-link">Logout</a>
