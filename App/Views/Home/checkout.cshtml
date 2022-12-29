@@ -1,6 +1,6 @@
-@{
-    ViewBag.Title = "checkout";
-}
+@model IEnumerable<Ringtone>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,37 +10,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../modules/bootstrap/dist/css/bootstrap.min.css" />
 </head>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Details</th>
 
-<h2>checkout</h2>
-
-@if (TempData["CardPayment"] != null)
-{
-    <table class="table table-responsive">
-        <thead>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model)
+        {
             <tr>
-                <th>ID</th>
-                <th>PRICE</th>
+                <td>@r.Id</td>
+                <td>@r.Name</td>
+                <td>@r.Details</td>
+
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in TempData["CardPayment"] as List<CardPayment>)
-            {
-                <tr>
-                    <td>@item.RingtoneId</td>
-                    <td>@item.Amount</td>
-                </tr>
-            }
-        </tbody>
+        }
+    </tbody>
+</table>
 
-    </table>
+<a href="Success" class="btn btn-primary">Purchase</a>
 
-
-
-
-
-}
-else
-{
-    <h2 style="color:red"> Cart is empty....</h2>
-    @Html.ActionLink("go Back", "Index","Home")
-}
+</html>

@@ -5,6 +5,7 @@ using System.Net;
 using System;
 using Microsoft.AspNetCore.Session;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace App.Controllers
 {
@@ -56,28 +57,24 @@ namespace App.Controllers
 
         public IActionResult AddtoCart(int id)
         {
-            Ringtone r = db.Ringtones.Where(x => x.Id == id).FirstOrDefault();
+            Ringtone r = db.Ringtones.Where(x => x.Id == id).SingleOrDefault();
             return View(r);
         }
 
         List<CardPayment> li = new List<CardPayment>();
 
         [HttpPost]
-        public IActionResult AddtoCart(Ringtone r, int id)
+        public IActionResult AddtoCart(Ringtone r, string qty, int id)
         {
             Ringtone ring = db.Ringtones.Where(x => x.Id == id).SingleOrDefault();
             CardPayment c = new CardPayment();
             c.RingtoneId = ring.Id;
             c.Amount = ring.Price;
+            c.TransactionId = qty;
             if (TempData["CardPayment"] == null)
             {
                 li.Add(c);
-            }
-            else
-            {
-                List<CardPayment> li2 = TempData["CardPayment"] as List<CardPayment>;
-                li2.Add(c);
-                TempData["CardPayment"] = li2;
+                TempData["CardPayment"] = JsonConvert.SerializeObject(li);
             }
 
             TempData.Keep();
@@ -85,11 +82,14 @@ namespace App.Controllers
             return RedirectToAction("Index");
 
         }
-        public ActionResult checkout()
+        public IActionResult checkout()
         {
-            TempData.Keep();
+            var ringtones = from r in db.Ringtones where r.Id == 1 select r;
+            return View(ringtones);
 
-
+        }
+        public IActionResult Success()
+        {
             return View();
         }
     }
