@@ -11,7 +11,8 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">
-                            <a asp-action="Details" asp-controller="Home" asp-route-id="@ringtone.Id"> @ringtone.Name</a>
+                            <a asp-action="Details" asp-controller="Home" asp-route-id="@ringtone.Id"
+                        style="text-decoration: none;"> @ringtone.Name</a>
                         </h5>
                         <p class="card-text">
                             by @ringtone.Artist
@@ -19,8 +20,10 @@
                         <figure class="wp-block-audio alignright"><audio controls src="~/audio/@ringtone.Audiourl"
                         type="audio/mpeg" controlsList="nodownload"></audio></figure>
                         <p class="card-text">
-                            <button class="btn btn-primary">@Html.ActionLink("Add To Cart", "AddtoCart", new { id = @ringtone.Id
-                        },new {@style="color:#ffffff;" })</button>
+                            <button class="btn btn-secondary">@Html.ActionLink("Add To Cart", "AddtoCart", new { id =
+                        @ringtone.Id
+                        },new {@style="color:#ffffff; text-decoration: none;" })</button>
+                            ©copyright
                         </p>
                     </div>
                 </div>
@@ -38,7 +41,8 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">
-                            <a asp-action="Details" asp-controller="Home" asp-route-id="@ringtone.Id"> @ringtone.Name</a>
+                            <a asp-action="Details" asp-controller="Home" asp-route-id="@ringtone.Id"
+                        style="text-decoration: none;"> @ringtone.Name</a>
                         </h5>
                         <p class="card-text">
                             by @ringtone.Artist

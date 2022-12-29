@@ -11,47 +11,48 @@
     <link rel="stylesheet" href="../../modules/bootstrap/dist/css/bootstrap.min.css" />
 </head>
 
-<h2>Update User</h2>
+<h2>Update Profile</h2>
 <form method="post" class="form-control">
     <div class="container">
-        <div class="row">
+        <div class="table table-borderless">
             <table>
                 <tbody>
-                <tr>
-                    <td>
-                        <div >
-                            <label>User Name</label>
-                        </div>
-                    </td>
-                    <td>
-                        <div >
-                            @Html.TextBoxFor(x => x.Name)
-                        </div>
-                    </td>
-                    
-                </tr>
-                <tr>
-                    <td> 
-                        <div >
-                            <label>User Password</label>
-                        </div>  
-                    </td>
-                    <td> 
-                        <div >
-                            @Html.TextBoxFor(x => x.Password)
-                        </div>
-                    </td>
-                </tr>
-                <tr> 
-                    <td> 
-                    </td>
-                    <td> 
-                        <div>
-                            <button class="btn btn-primary">Update</button>
-                        </div>
-                    </td>
+                    <tr>
+                        <td>
+                            <div>
+                                <label>User Name</label>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.TextBoxFor(x => x.Name)
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                                <label>User Password</label>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.TextBoxFor(x => x.Password)
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+
+                        </td>
             </table>
+            <div>
+                <button class="btn btn-primary">Update</button>
+            </div>
         </div>
     </div>
-    
+
 </form>

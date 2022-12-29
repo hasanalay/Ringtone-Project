@@ -11,7 +11,7 @@
 
 
 <P>
-<h2>PURCHASE SUCCESS!</h2>
+<h2>PURCHASE SUCCESSFUL!</h2>
 </P>
 @foreach (var r in Model)
 {
@@ -29,17 +29,20 @@
                                 <div class="col-md-8">
 
                                     <h5 class="card-title">
-                                        <a asp-action="Details" asp-controller="Home" asp-route-id="@r.Id">
+                                        <a asp-action="Details" asp-controller="Home" asp-route-id="@r.Id"
+                                        style="text-decoration: none;">
                                             @r.Name</a>
                                     </h5>
                                     <p class="card-text">
                                         @r.Details
                                     </p>
-                                    <audio controls>
-                                        <source src="~/@r.Audiourl" type="audio/mpeg">
-                                    </audio>
-                                    <p class="card-text">
-                                        <small class="text-muted">3 days ago</small>
+                                    <figure class="wp-block-audio alignright"><audio controls src="\audio\kitty-meow.mp3"
+                                        type="audio/mpeg" controlsList="nodownload"></audio></figure>
+                                    <p>
+
+                                    <form method="get" action="~/audio/kitty-meow.mp3">
+                                        <button type="submit">Download!</button>
+                                    </form>
                                     </p>
                                 </div>
                             </div>

@@ -129,6 +129,7 @@ namespace App.Controllers
             var result = db.Ringtones.Find(x.Id);
             result.Name = x.Name;
             result.Price = x.Price;
+            result.Artist = x.Artist;
             result.Details = x.Details;
             result.Imageurl = x.Imageurl;
             result.Audiourl = x.Audiourl;

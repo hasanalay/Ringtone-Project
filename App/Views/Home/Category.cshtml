@@ -26,15 +26,15 @@
                                 <div class="col-md-8">
 
                                     <h5 class="card-title">
-                                        <a asp-action="Category" asp-controller="Home" asp-route-id="@r.CategoryId">
+                                        <a asp-action="Category" asp-controller="Home" asp-route-id="@r.CategoryId"
+                                        style="text-decoration: none;">
                                             @r.Name</a>
                                     </h5>
                                     <p class="card-text">
                                         @r.Details
                                     </p>
-                                    <audio controls>
-                                        <source src="~/@r.Audiourl" type="audio/mpeg">
-                                    </audio>
+                                    <figure class="wp-block-audio alignright"><audio controls src="~/audio/@r.Audiourl"
+                                        type="audio/mpeg" controlsList="nodownload"></audio></figure>
                                     <p class="card-text">
                                         <small class="text-muted">3 days ago</small>
                                     </p>
