@@ -1,5 +1,4 @@
 @model IEnumerable<Ringtone>
-
 @foreach (var ringtone in Model)
 {
     @if (User.Identity.IsAuthenticated)
@@ -20,7 +19,7 @@
                         <figure class="wp-block-audio alignright"><audio controls src="~/audio/@ringtone.Audiourl"
                         type="audio/mpeg" controlsList="nodownload"></audio></figure>
                         <p class="card-text">
-                            <button class="btn btn-primary">Add to Favorite</button>
+                            <span class="btn btn-danger">@Html.ActionLink("Add To Cart", "AddtoCart", new { id = @ringtone.Id })</span>
                         </p>
                     </div>
                 </div>

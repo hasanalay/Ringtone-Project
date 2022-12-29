@@ -1,0 +1,46 @@
+@{
+    ViewBag.Title = "checkout";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../modules/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+
+<h2>checkout</h2>
+
+@if (TempData["CardPayment"] != null)
+{
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>PRICE</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in TempData["CardPayment"] as List<CardPayment>)
+            {
+                <tr>
+                    <td>@item.RingtoneId</td>
+                    <td>@item.Amount</td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+
+
+
+
+}
+else
+{
+    <h2 style="color:red"> Cart is empty....</h2>
+    @Html.ActionLink("go Back", "Index","Home")
+}
