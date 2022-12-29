@@ -1,8 +1,4 @@
-@model Ringtone
-@{
-    ViewBag.Title = "Addtocart";
-}
-
+@model IEnumerable<Ringtone>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../modules/bootstrap/dist/css/bootstrap.min.css" />
 </head>
-@using (@Html.BeginForm())
+
+
+<P>
+<h2>PURCHASE SUCCESS!</h2>
+</P>
+@foreach (var r in Model)
 {
 
     <body>
@@ -23,27 +24,23 @@
                         <div class="card-body">
                             <div class="row no-gutter">
                                 <div class="col-md-4">
-                                    <img src="~/img/@Model.Imageurl" alt="@Model.Artist" class="card-img">
+                                    <img src="~/img/@r.Imageurl" alt="@r.Artist" class="card-img">
                                 </div>
                                 <div class="col-md-8">
 
                                     <h5 class="card-title">
-                                        <a asp-action="Details" asp-controller="Home" asp-route-id="@Model.Id">
-                                            @Model.Name</a>
+                                        <a asp-action="Details" asp-controller="Home" asp-route-id="@r.Id">
+                                            @r.Name</a>
                                     </h5>
                                     <p class="card-text">
-                                        @Model.Details
+                                        @r.Details
                                     </p>
                                     <audio controls>
-                                        <source src="~/audio/@Model.Audiourl" type="audio/mpeg">
+                                        <source src="~/@r.Audiourl" type="audio/mpeg">
                                     </audio>
                                     <p class="card-text">
-                                        Price: @Model.Price TL
+                                        <small class="text-muted">3 days ago</small>
                                     </p>
-                                    <p class="card-text">
-                                        <input type="submit" value="Add To Cart" class="btn btn-primary" />
-                                    </p>
-
                                 </div>
                             </div>
                         </div>
@@ -51,5 +48,7 @@
                 </div>
             </div>
     </body>
-
 }
+
+
+</html>
